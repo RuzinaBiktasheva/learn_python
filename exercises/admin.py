@@ -1,4 +1,4 @@
-# Упражнение 9.3:
+from privileges import Privileges
 
 class User():
 
@@ -22,18 +22,12 @@ class User():
     def reset_login_attepts(self):
         self.login_attempts = 0
 
-one_user = User('ольга', 'павлова', '30', 'женский', 'Россия')
-one_user.describe_user()
-one_user.greet_user()
+class Admin(User):
 
-two_user = User('max', 'jouhson', '29', 'male', 'USA')
-two_user.describe_user()
-two_user.greet_user()
+    def __init__(self, first_name, last_name, age, gender, country, login_attempts = 0):
+        super().__init__(first_name, last_name, age, gender, country, login_attempts = 0)
+        self.admin_privileges = Privileges()
 
-three_user = User('Сара', 'Пулман', '45', 'женский', 'Израиль')
-three_user.increment_login_attempts()
-three_user.increment_login_attempts()
-three_user.increment_login_attempts()
-print(three_user.login_attempts)
-three_user.reset_login_attepts()
-print(three_user.login_attempts)
+
+my_admin = Admin('Андрей', 'Калинин', 34, 'мужской', 'Россия')
+my_admin.admin_privileges.show_privileges()
